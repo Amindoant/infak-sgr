@@ -2,77 +2,64 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Material Sumbangan SGR</title>
-
+  <title>Pengeluaran Musholla SGR</title>
   <link rel="stylesheet" href="style.css">
-
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
 
 <!-- NAVBAR -->
 <nav class="navbar">
-
-  <div class="logo">
-    🕌 MUSHOLLA SGR
-  </div>
+  <div class="logo">🕌 MUSHOLLA SGR</div>
 
   <div class="menu">
-    <a href="index.html">Dashboard</a>
+	<a href="index.html">Dashboard</a>
     <a href="infak.html">Infak</a>
-    <a href="pengeluaran.html">Pengeluaran</a>
-    <a href="material.html" class="active">Material</a>
+    <a href="pengeluaran.html" class="active">Pengeluaran</a>
+    <a href="material.html">Material</a>
   </div>
-
 </nav>
 
 <!-- HEADER -->
 <header class="header">
-
-  <h1>MATERIAL SUMBANGAN</h1>
+  <h1>LAPORAN PENGELUARAN</h1>
 
   <p>Pembangunan Musholla</p>
-
   <p>Perumahan Star Garden Residence (SGR)</p>
-
 </header>
 
 <div class="container">
 
-  <h2>🧱 Data Material Sumbangan</h2>
+  <h2>💸 Data Pengeluaran</h2>
 
   <div class="table-wrapper">
-
     <table>
-
       <thead>
         <tr>
           <th>No</th>
           <th>Tanggal</th>
-          <th>Nama Barang</th>
-          <th>Donatur</th>
+          <th>Keterangan</th>
           <th>Jumlah</th>
         </tr>
       </thead>
 
-      <tbody id="dataMaterial"></tbody>
-
+      <tbody id="dataPengeluaran"></tbody>
     </table>
+  </div>
 
+  <div class="total-donatur">
+    Total Pengeluaran:
+    Rp <span id="totalPengeluaran">0</span>
   </div>
 
 </div>
 
-<!-- FOOTER -->
 <footer class="footer">
-
   © 2026 Panitia Pembangunan Musholla SGR
-
 </footer>
 
-<script src="material.js"></script>
+<script src="pengeluaran.js"></script>
 
 </body>
 </html>

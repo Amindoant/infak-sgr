@@ -1,129 +1,284 @@
-body {
-  font-family: Arial;
-  background: #f5f5f5;
+/* ===== BODY ===== */
+
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#f5f6fa;
+  color:#222;
 }
 
-.container {
-  max-width: 800px;
-  margin: auto;
-  padding: 20px;
+/* ===== CONTAINER ===== */
+
+.container{
+  width:90%;
+  max-width:1200px;
+  margin:auto;
+  padding:30px 0;
 }
 
-h1 {
-  text-align: center;
+/* ===== NAVBAR ===== */
+
+.navbar{
+  background:#3498db;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 30px;
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
 
-table {
-  width: 100%;
-  background: white;
-  margin-top: 20px;
-  border-collapse: collapse;
+.logo{
+  color:white;
+  font-size:24px;
+  font-weight:bold;
 }
 
-th {
-  background: #3498db;
-  color: white;
+.menu{
+  display:flex;
+  gap:15px;
 }
 
-td, th {
-  padding: 10px;
-  text-align: center;
+.menu a{
+  background:white;
+  color:#3498db;
+  text-decoration:none;
+  font-size:15px;
+  font-weight:bold;
+  padding:10px 18px;
+  border-radius:10px;
+  transition:0.3s;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
 }
-/* 📱 MOBILE VERSION */
-@media (max-width: 600px) {
 
-  .container {
-    padding: 10px;
+.menu a:hover{
+  background:#ecf0f1;
+  transform:translateY(-2px);
+}
+
+.menu .active{
+  background:#f1c40f;
+  color:#222;
+}
+/* ===== HEADER ===== */
+.header{
+  width:100%;
+  text-align:center;
+  padding:40px 20px;
+  background:white;
+  border-radius:15px;
+  margin:20px auto;
+  box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+
+.header h1{
+  font-size:42px;
+  margin:0 0 15px;
+  text-align:center;
+}
+
+.header p{
+  font-size:22px;
+  margin:8px 0;
+  text-align:center;
+}
+
+.header span{
+  display:block;
+  margin-top:10px;
+  text-align:center;
+}
+
+/* ===== DASHBOARD ===== */
+
+.dashboard-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+  margin-top:40px;
+}
+
+.card{
+  background:white;
+  border-radius:15px;
+  padding:30px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+}
+
+.card h3{
+  margin-bottom:15px;
+  font-size:20px;
+  color:#555;
+}
+
+.card h2{
+  font-size:35px;
+  margin:0;
+}
+
+.card h1{
+  font-size:45px;
+  margin:0;
+}
+
+.pemasukan{
+  border-left:8px solid #3498db;
+}
+
+.pengeluaran{
+  border-left:8px solid #e74c3c;
+}
+
+.saldo{
+  border-left:8px solid #27ae60;
+}
+
+/* ===== TABLE ===== */
+
+.table-wrapper{
+  overflow-x:auto;
+}
+
+.table-wrapper table{
+  width:100%;
+  border-collapse:collapse;
+  background:white;
+  margin-top:20px;
+  border-radius:12px;
+  overflow:hidden;
+}
+
+.table-wrapper th{
+  background:#3498db;
+  color:white;
+  font-size:16px;
+}
+
+.table-wrapper td,
+.table-wrapper th{
+  padding:14px;
+  text-align:center;
+}
+
+.table-wrapper tr:nth-child(even){
+  background:#f9f9f9;
+}
+
+.table-wrapper tr:hover{
+  background:#eef6ff;
+}
+
+/* ===== TOTAL BOX ===== */
+
+.total-infak,
+.total-donatur,
+.grand-total{
+  margin-top:20px;
+  padding:15px 20px;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+.total-infak{
+  background:#fff3cd;
+  font-size:24px;
+}
+
+.total-donatur{
+  background:#d1ecf1;
+  font-size:24px;
+}
+
+.grand-total{
+  background:#27ae60;
+  color:white;
+  font-size:30px;
+}
+
+/* ===== BUTTON ===== */
+
+.btn-refresh{
+  background:#3498db;
+  color:white;
+  border:none;
+  padding:12px 20px;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:16px;
+  transition:0.3s;
+}
+
+.btn-refresh:hover{
+  background:#2980b9;
+}
+
+/* ===== FOOTER ===== */
+
+.footer{
+  background:#1f2d3d;
+  color:white;
+  text-align:center;
+  padding:25px;
+  margin-top:60px;
+  font-size:14px;
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:768px){
+
+  .navbar{
+    flex-direction:column;
+    gap:15px;
+    padding:15px;
   }
 
-  table {
-    font-size: 12px;
+  .menu{
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
   }
 
-  td, th {
-    padding: 6px;
+  .menu a{
+    font-size:14px;
   }
 
-  h1 {
-    font-size: 20px;
+  .header h1{
+    font-size:30px;
   }
 
-  button {
-    width: 100%;
-    margin-bottom: 10px;
+  .header p{
+    font-size:16px;
   }
-}
-.table-wrapper {
-  overflow-x: auto;
-}
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 600px; /* biar tidak gepeng */
-}
-td:last-child {
-  text-align: right; /* jumlah rata kanan */
-}
+  .card{
+    padding:20px;
+  }
 
-td:nth-child(3) {
-  white-space: normal; /* keterangan bisa turun */
-}
-.container {
-  max-width: 1000px; /* biar lebih lebar di laptop */
-}
-h2 {
-  margin-top: 30px;
-}
+  .card h1{
+    font-size:30px;
+  }
 
+  .card h2{
+    font-size:26px;
+  }
 
-.total-box {
-  background: #27ae60;   /* hijau */
-  color: white;
-  padding: 15px;
-  margin-top: 20px;
-  border-radius: 8px;
+  .table-wrapper table{
+    font-size:13px;
+  }
 
-  font-size: 22px;       /* 🔥 lebih besar */
-  font-weight: bold;
+  .table-wrapper td,
+  .table-wrapper th{
+    padding:10px;
+  }
 
-  text-align: left;
-}
-
-.report-header {
-  text-align: center;
-  margin-bottom: 20px;
-  border-bottom: 2px solid #333;
-  padding-bottom: 10px;
-}
-
-.report-header h2 {
-  margin: 0;
-  font-size: 22px;
-  font-weight: bold;
-}
-
-.report-header h3 {
-  margin: 5px 0;
-  font-size: 16px;
-  font-weight: normal;
-}
-
-.report-header p {
-  margin: 5px 0 0;
-  font-size: 14px;
-  color: #555;
-}
-
-#totalInfak {
-  background: #fff3cd;   /* kuning soft */
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-weight: bold;
-}
-#totalDonatur {
-  background: #d1f2eb;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-weight: bold;
+  .grand-total{
+    font-size:22px;
+  }
 }

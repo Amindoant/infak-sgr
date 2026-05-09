@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Laporan Keuangan Infak SGR</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+  <div class="logo">
+    🕌 MUSHOLLA SGR
+  </div>
+  <div class="menu">
+    <a href="index.html">Dashboard</a>
+    <a href="infak.html" class="active">Infak</a>
+    <a href="pengeluaran.html">Pengeluaran</a>
+    <a href="material.html">Material</a>
+  </div>
+
+</nav>
+
+<!-- HEADER -->
+<header class="header">
+
+  <h1>LAPORAN KEUANGAN INFAK</h1>
+
+  <p>Pembangunan Musholla</p>
+
+  <p>Perumahan Star Garden Residence (SGR)</p>
+
+  <span id="periode">
+  Periode: -
+  </span>
+
+</header>
+
+<div class="container">
+
+  <button onclick="loadData()" class="btn-refresh">
+    🔄 Refresh Data
+  </button>
+
+  <!-- DATA INFAK -->
+  <h2>📊 Data Infak</h2>
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Tanggal</th>
+          <th>Keterangan</th>
+          <th>Jumlah</th>
+        </tr>
+      </thead>
+
+      <tbody id="dataInfak"></tbody>
+
+    </table>
+
+  </div>
+
+  <div class="total-infak">
+    Total Infak:
+    Rp <span id="totalInfak">0</span>
+  </div>
+
+  <!-- DONATUR -->
+  <h2>🟢 Donatur Tambahan</h2>
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Tanggal</th>
+          <th>Keterangan</th>
+          <th>Jumlah</th>
+        </tr>
+      </thead>
+
+      <tbody id="dataDonatur"></tbody>
+
+    </table>
+
+  </div>
+
+  <div class="total-donatur">
+    Total Donatur:
+    Rp <span id="totalDonatur">0</span>
+  </div>
+
+  <!-- GRAND TOTAL -->
+  <div class="grand-total">
+    TOTAL KESELURUHAN:
+    Rp <span id="grandTotal">0</span>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+
+  © 2026 Panitia Pembangunan Musholla SGR
+  <br>
+  Perumahan Star Garden Residence
+
+</footer>
+
+<script src="app.js"></script>
+
+</body>
+</html>
