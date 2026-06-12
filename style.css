@@ -526,3 +526,14 @@ cursor:pointer;
         font-size:15px;
     }
 }
+.card{
+    cursor:pointer;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 12px 25px rgba(46,125,50,0.15);
+}
+.card:active{
+    transform:scale(0.98);
+}
