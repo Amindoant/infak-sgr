@@ -550,3 +550,13 @@ cursor:pointer;
 .wa-btn:hover{
     background:#1da851;
 }
+.material-donasi{
+    margin-top:20px;
+    text-align:center;
+    cursor:pointer;
+    border-left:8px solid #FF9800;
+}
+
+.material-donasi h2{
+    color:#FF9800;
+}
