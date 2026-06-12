@@ -537,3 +537,16 @@ cursor:pointer;
 .card:active{
     transform:scale(0.98);
 }
+.wa-btn{
+    display:inline-block;
+    background:#25D366;
+    color:white;
+    padding:10px 18px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.wa-btn:hover{
+    background:#1da851;
+}
