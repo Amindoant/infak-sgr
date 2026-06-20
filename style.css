@@ -594,3 +594,12 @@ cursor:pointer;
     border:none;
     border-radius:10px;
 }
+.foto-img{
+width:70px;
+height:70px;
+object-fit:cover;
+border-radius:8px;
+border:1px solid #ddd;
+cursor:pointer;
+transition:0.2s;
+}
