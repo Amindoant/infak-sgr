@@ -25,6 +25,14 @@ async function loadData() {
     const tanggal = item.tanggal;
     const keterangan = item.keterangan;
     const jenis = (item.jenis || "infak").toLowerCase();
+	
+	//tambahan
+	let foto = item.foto || "";
+
+	if (foto.includes("imgur.com") && !foto.includes("i.imgur.com")) {
+	const id = foto.split("/").pop();
+	foto = `https://i.imgur.com/${id}.jpg`;
+	}
 
     const jumlah = Number(
       (item.jumlah || "0")
@@ -49,6 +57,21 @@ async function loadData() {
           <td>${tglFormat}</td>
           <td>${keterangan}</td>
           <td>Rp ${jumlah.toLocaleString()}</td>
+		  <td>
+			${
+			foto
+			? `
+              <img
+                src="${foto}"
+                alt="Nota"
+                class="foto-img"
+                onclick="showNota('${foto}')"
+              >
+            `
+			:
+			"-"
+			}
+			</td>
         </tr>
       `;
       totalDonatur += jumlah;
@@ -59,6 +82,21 @@ async function loadData() {
           <td>${tglFormat}</td>
           <td>${keterangan}</td>
           <td>Rp ${jumlah.toLocaleString()}</td>
+		  <td>
+			${
+			foto
+			? `
+              <img
+                src="${foto}"
+                alt="Nota"
+                class="foto-img"
+                onclick="showNota('${foto}')"
+              >
+            `
+			:
+			"-"
+			}
+		   </td>
         </tr>
       `;
       totalInfak += jumlah;
@@ -90,3 +128,21 @@ async function loadData() {
 
 window.loadData = loadData;
 loadData();
+function showNota(url){
+
+    const modal = document.createElement('div');
+
+    modal.className = "modal-nota";
+
+    modal.innerHTML = `
+        <span class="close-btn">&times;</span>
+        <img src="${url}" class="modal-image">
+    `;
+
+    document.body.appendChild(modal);
+
+    modal.addEventListener('click', () => {
+        modal.remove();
+    });
+
+}
