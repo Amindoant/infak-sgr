@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Material Sumbangan SGR</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+  <div class="logo">
+    🕌 MUSHOLLA SGR
+  </div>
+
+  <div class="menu">
+    <a href="index.html">Dashboard</a>
+    <a href="infak.html">Infak</a>
+    <a href="pengeluaran.html">Pengeluaran</a>
+    <a href="material.html" class="active">Material</a>
+	<a href="dokumen.html" class="active">Denah</a>
+  </div>
+
+</nav>
+
+<!-- HEADER -->
+<header class="header">
+
+  <h1>DENAH BANGUNAN MUSHOLLA </h1>
+
+  <p>Pembangunan Musholla</p>
+
+  <p>Perumahan Star Garden Residence (SGR)</p>
+
+</header>
+
+<div class="container">
+
+    <h2 class="section-title">Denah Musholla</h2>
+	<h3>Klik lihat detail untuk melihat denah/gambar Musholla</h3>
+    <table class="doc-table">
+
+        <thead>
+            <tr>
+                <th width="60">No</th>
+                <th>Nama </th>
+                <th width="120">Jenis</th>
+                <th width="180">Aksi</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>1</td>
+                <td>Denah Musholla</td>
+                <td>PDF</td>
+                <td>
+                    <button class="btn-detail"
+                        onclick="openPdf(
+                        'Denah Musholla',
+                        '1c6ukyGxKHf3Kwl-av5sSJIM-koCY1h4p'
+                        )">
+
+                        Lihat Detail →
+
+                    </button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>Foto 3D Musholla</td>
+                <td>PDF</td>
+                <td>
+                    <button class="btn-detail"
+                        onclick="openPdf(
+                        'Foto 3D Musholla',
+                        '1Hqh8VvvSuKADggoodNZd23gb5U-kylim'
+                        )">
+
+                        Lihat Detail →
+
+                    </button>
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<div id="pdfModal" class="pdf-modal"
+    onclick="closePdf()">
+
+<div class="pdf-content"
+ onclick="event.stopPropagation()">
+
+<div class="pdf-header">
+
+<h2 id="pdfTitle"></h2>
+
+<div class="toolbar">
+
+<button onclick="fullscreenPdf()">⛶</button>
+
+<button onclick="closePdf()">✕</button>
+
+</div>
+
+</div>
+
+<div id="loading" class="loading">
+
+<div class="spinner"></div>
+
+<b>Memuat Dokumen...</b>
+
+</div>
+
+<iframe
+    id="pdfFrame"
+    allowfullscreen>
+</iframe>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+
+  © 2026 Panitia Pembangunan Musholla SGR
+
+</footer>
+<script src="dokumen.js"></script>
+
+</body>
+</html>
