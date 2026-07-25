@@ -546,7 +546,17 @@ cursor:pointer;
     text-decoration:none;
     font-weight:bold;
 }
-
+.wa-info{
+    background:#e8f5e9;
+    color:#2e7d32;
+    border:1px solid #c8e6c9;
+    padding:10px 15px;
+    border-radius:8px;
+    margin:15px 0 20px;
+    font-size:15px;
+    text-align:center;
+    font-weight:600;
+}
 .wa-btn:hover{
     background:#1da851;
 }
