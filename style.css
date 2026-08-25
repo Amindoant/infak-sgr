@@ -964,7 +964,7 @@ height:220px;
 .qris-text {
     margin: 10px auto 15px;
     color: #555;
-    font-size: 14px;
+    font-size: 17px;
     max-width: 500px;
 }
 
@@ -986,7 +986,7 @@ height:220px;
 }
 
 .qris-note {
-    font-size: 13px;
+    font-size: 17px;
     color: #777;
     margin-top: 10px;
 }
