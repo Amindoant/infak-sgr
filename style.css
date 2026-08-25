@@ -950,4 +950,43 @@ transform:rotate(360deg);
 height:220px;
 
 }
+/* =========================
+   QRIS DONASI
+========================= */
 
+.qris-section {
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.qris-text {
+    margin: 10px auto 15px;
+    color: #555;
+    font-size: 14px;
+    max-width: 500px;
+}
+
+.qris-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.qris-image {
+    width: 280px;
+    max-width: 90%;
+    height: auto;
+    padding: 10px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.qris-note {
+    font-size: 13px;
+    color: #777;
+    margin-top: 10px;
+}
