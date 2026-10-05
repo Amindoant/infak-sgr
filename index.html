@@ -2,75 +2,145 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard Keuangan Pembangunan Musholla SGR</title>
-
+  <meta name="description" content="Laporan terbuka infak, donasi, pengeluaran, dan progres pembangunan Musholla Perumahan Star Garden Residence (SGR), Mojosari.">
+  <meta property="og:title" content="Dashboard Keuangan Pembangunan Musholla SGR">
+  <meta property="og:description" content="Laporan terbuka infak, donasi, pengeluaran, dan progres pembangunan Musholla Perumahan Star Garden Residence (SGR), Mojosari.">
+  <meta property="og:image" content="https://i.imgur.com/srrKdnP.jpeg">
+  <meta property="og:url" content="https://www.mushollasgr.my.id/">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#2E7D32">
   <link rel="stylesheet" href="style.css">
-
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
 </head>
-
 <body>
-
-<!-- NAVBAR -->
 <nav class="navbar">
-
-  <div class="logo">
-    🕌 MUSHOLLA SGR
-  </div>
-
+  <div class="logo">🕌 MUSHOLLA SGR</div>
   <div class="menu">
-    <a href="index.html" class="active">Dashboard</a>
+    <a href="index.html" class="active" aria-current="page">Dashboard</a>
     <a href="infak.html">Infak</a>
     <a href="pengeluaran.html">Pengeluaran</a>
     <a href="material.html">Material</a>
-	<a href="dokumen.html">Denah</a>
-	<a href="dokumentasi.html">Dokumentasi</a>
+    <a href="dokumen.html">Denah</a>
+    <a href="dokumentasi.html">Dokumentasi</a>
   </div>
-
 </nav>
 
-<!-- HEADER -->
 <header class="header">
   <h1>PROGRES PEMBANGUNAN MUSHOLLA SGR</h1>
   <h2>Perumahan Star Garden Residence (SGR)</h2>
   <h3>Dusun Sidotopo Desa Menanggal Kecamatan Mojosari Kabupaten Mojokerto</h3>
+  <p class="update-line" id="updateInfo">Memuat data terbaru…</p>
 </header>
 
 <div class="container">
 
-  <div class="dashboard-grid">
+  <div id="dashStatus"></div>
 
-  <div class="card pemasukan" onclick="window.location.href='infak.html'">
-    <h2>Total Pemasukan</h2>
-    <h1>Rp <span id="totalMasuk">0</span></h1>
-	<small>Lihat Detail →</small>
+  <!-- TARGET DANA (muncul jika sheet "rab" sudah diisi) -->
+  <section class="panel target-panel" id="targetPanel" hidden>
+    <div class="target-top">
+      <div>
+        <h2 class="panel-title">Target pembangunan</h2>
+        <p class="panel-sub" id="targetSub"></p>
+      </div>
+      <div class="target-percent" id="targetPercent">0%</div>
+    </div>
+    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="targetBar">
+      <div class="progress-fill" id="targetFill"></div>
+    </div>
+    <div class="target-legend">
+      <span>Terkumpul <strong id="targetTerkumpul">-</strong></span>
+      <span>Kekurangan <strong id="targetKurang">-</strong></span>
+    </div>
+  </section>
+
+  <!-- RINGKASAN -->
+  <div class="dashboard-grid summary-grid">
+
+    <a class="card pemasukan card-link" href="infak.html">
+      <h2>Total Pemasukan</h2>
+      <h1>Rp <span id="totalMasuk">0</span></h1>
+      <p class="card-note" id="noteMasuk"></p>
+      <small>Lihat detail</small>
+    </a>
+
+    <a class="card pengeluaran card-link" href="pengeluaran.html">
+      <h2>Total Pengeluaran</h2>
+      <h1>Rp <span id="totalKeluar">0</span></h1>
+      <p class="card-note" id="noteKeluar"></p>
+      <small>Lihat detail</small>
+    </a>
+
+    <div class="card saldo">
+      <h2>Sisa Saldo</h2>
+      <h1>Rp <span id="saldoAkhir">0</span></h1>
+      <p class="card-note">Pemasukan dikurangi pengeluaran</p>
+    </div>
+
+    <a class="card material-donasi card-link" href="material.html">
+      <h2>🧱 Sumbangan Material</h2>
+      <p class="material-highlight" id="materialHighlight">Daftar material yang telah disumbangkan warga.</p>
+      <small>Lihat detail</small>
+    </a>
+
   </div>
 
-  <div class="card pengeluaran" onclick="window.location.href='pengeluaran.html'">
-    <h2>Total Pengeluaran</h2>
-    <h1>Rp <span id="totalKeluar">0</span></h1>
-	<small>Lihat Detail →</small>
+  <!-- INFAK JUMAT TERAKHIR -->
+  <section class="panel jumat-panel" id="jumatPanel" hidden>
+    <div>
+      <h2 class="panel-title">Infak Jumat terakhir</h2>
+      <p class="panel-sub" id="jumatSub"></p>
+    </div>
+    <div class="jumat-angka" id="jumatAngka"></div>
+    <p class="jumat-banding" id="jumatBanding"></p>
+  </section>
+
+  <!-- TAHAPAN -->
+  <section class="panel" id="tahapPanel" hidden>
+    <h2 class="panel-title">Tahapan pembangunan</h2>
+    <ol class="tahap-list" id="tahapList"></ol>
+  </section>
+
+  <!-- GRAFIK -->
+  <div class="chart-grid">
+    <section class="panel chart-wide">
+      <h2 class="panel-title">Pemasukan dan pengeluaran per bulan</h2>
+      <div class="chart-box tall"><canvas id="chartBulanan" aria-label="Grafik pemasukan dan pengeluaran per bulan"></canvas></div>
+    </section>
+
+    <section class="panel">
+      <h2 class="panel-title">Uang dipakai untuk apa?</h2>
+      <div class="chart-box"><canvas id="chartKategori" aria-label="Grafik komposisi pengeluaran"></canvas></div>
+      <ul class="legend-list" id="legendKategori"></ul>
+    </section>
+
+    <section class="panel">
+      <h2 class="panel-title">Sumber pemasukan</h2>
+      <div class="chart-box"><canvas id="chartSumber" aria-label="Grafik sumber pemasukan"></canvas></div>
+      <ul class="legend-list" id="legendSumber"></ul>
+    </section>
+
+    <section class="panel chart-wide">
+      <h2 class="panel-title">Perolehan infak setiap Jumat</h2>
+      <p class="panel-sub" id="jumatRata"></p>
+      <div class="chart-box tall"><canvas id="chartJumat" aria-label="Grafik infak Jumat per pekan"></canvas></div>
+    </section>
   </div>
 
-  <div class="card saldo">
-    <h2>Sisa Saldo</h2>
-    <h1>Rp <span id="saldoAkhir">0</span></h1>
+  <!-- POSISI SALDO (muncul jika sheet "saldo" sudah diisi) -->
+  <section class="panel" id="saldoPanel" hidden>
+    <h2 class="panel-title">Uang tersimpan di mana?</h2>
+    <p class="panel-sub" id="saldoSub"></p>
+    <div class="saldo-list" id="saldoList"></div>
+    <p class="saldo-cek" id="saldoCek"></p>
+  </section>
+
+  <div class="share-row">
+    <button type="button" class="wa-btn share-btn" id="shareBtn">Bagikan laporan ke WhatsApp</button>
   </div>
-  
-<div class="card material-donasi"
-     onclick="window.location.href='material.html'">
 
-    <h2>🧱 Sumbangan Material</h2>
-
-    <p>
-        Klik di sini untuk melihat daftar material yang telah disumbangkan warga.
-    </p>
-	<small>Lihat Detail →</small>
-</div>
-
-</div>
-<div class="dashboard-grid">
+  <div class="dashboard-grid donasi-grid">
     <div class="card donasi-card">
 
         <div class="donasi-icon">💚</div>
@@ -176,10 +246,16 @@
         allowfullscreen>
     </iframe>
 </div>
+
+</div>
+
 <footer class="footer">
   © 2026 Panitia Pembangunan Musholla SGR
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+<script src="config.js"></script>
+<script src="utils.js"></script>
 <script src="dashboard.js"></script>
 
 </body>

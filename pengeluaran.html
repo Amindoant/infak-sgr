@@ -2,67 +2,73 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Pengeluaran Musholla SGR</title>
-  <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laporan Pengeluaran Musholla SGR</title>
+  <meta name="description" content="Rincian pengeluaran pembangunan Musholla SGR per kategori lengkap dengan foto nota.">
+  <meta property="og:title" content="Laporan Pengeluaran Musholla SGR">
+  <meta property="og:description" content="Rincian pengeluaran pembangunan Musholla SGR per kategori lengkap dengan foto nota.">
+  <meta property="og:image" content="https://i.imgur.com/srrKdnP.jpeg">
+  <meta property="og:url" content="https://www.mushollasgr.my.id/">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#2E7D32">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-<!-- NAVBAR -->
 <nav class="navbar">
   <div class="logo">🕌 MUSHOLLA SGR</div>
-
   <div class="menu">
-	<a href="index.html">Dashboard</a>
+    <a href="index.html">Dashboard</a>
     <a href="infak.html">Infak</a>
-    <a href="pengeluaran.html" class="active">Pengeluaran</a>
+    <a href="pengeluaran.html" class="active" aria-current="page">Pengeluaran</a>
     <a href="material.html">Material</a>
-	<a href="dokumen.html">Denah</a>
-	<a href="dokumentasi.html">Dokumentasi</a>
+    <a href="dokumen.html">Denah</a>
+    <a href="dokumentasi.html">Dokumentasi</a>
   </div>
 </nav>
 
-<!-- HEADER -->
 <header class="header">
   <h1>LAPORAN PENGELUARAN</h1>
-
   <p>Pembangunan Musholla</p>
   <p>Perumahan Star Garden Residence (SGR)</p>
+  <span id="periode"></span>
 </header>
 
 <div class="container">
 
-  <h2>💸 Data Pengeluaran</h2>
+  <h2>💸 Pengeluaran per kategori</h2>
+  <p class="hint">Ketuk kategori untuk menampilkan transaksinya saja.</p>
+  <div class="kategori-row" id="kategoriRow"></div>
+
+  <div class="toolbar-row">
+    <input type="search" id="cari" class="search-input" placeholder="Cari barang, nama tukang, atau tanggal…" aria-label="Cari data">
+    <select id="urut" class="select-input" aria-label="Urutan">
+      <option value="baru">Terbaru dulu</option>
+      <option value="lama">Terlama dulu</option>
+    </select>
+  </div>
+
+  <div id="pageStatus"></div>
 
   <div class="table-wrapper">
     <table>
-      <thead>
-		<tr>
-			<th>No</th>
-			<th>Tanggal</th>
-			<th>Keterangan</th>
-			<th>Jumlah</th>
-			<th>Foto Nota</th>
-		</tr>
-		</thead>
+      <thead><tr><th>Tanggal</th><th>Keterangan</th><th>Kategori</th><th>Jumlah</th><th>Nota</th></tr></thead>
       <tbody id="dataPengeluaran"></tbody>
     </table>
   </div>
 
   <div class="total-donatur">
-    Total Pengeluaran:
-    Rp <span id="totalPengeluaran">0</span>
+    <span id="labelTotal">Total pengeluaran</span>: Rp <span id="totalPengeluaran">0</span>
   </div>
-<div class="back-button">
-<a href="index.html">← Kembali ke Dashboard</a>
-</div>
+
+  <div class="back-button"><a href="index.html">← Kembali ke Dashboard</a></div>
 </div>
 
 <footer class="footer">
   © 2026 Panitia Pembangunan Musholla SGR
 </footer>
 
+<script src="config.js"></script>
+<script src="utils.js"></script>
 <script src="pengeluaran.js"></script>
 
 </body>

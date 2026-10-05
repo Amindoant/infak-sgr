@@ -2,50 +2,52 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Dokumentasi Musholla SGR</title>
-  <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dokumentasi Pembangunan Musholla SGR</title>
+  <meta name="description" content="Foto dan video progres pembangunan Musholla SGR dari waktu ke waktu.">
+  <meta property="og:title" content="Dokumentasi Pembangunan Musholla SGR">
+  <meta property="og:description" content="Foto dan video progres pembangunan Musholla SGR dari waktu ke waktu.">
+  <meta property="og:image" content="https://i.imgur.com/srrKdnP.jpeg">
+  <meta property="og:url" content="https://www.mushollasgr.my.id/">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#2E7D32">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-<!-- NAVBAR -->
 <nav class="navbar">
   <div class="logo">🕌 MUSHOLLA SGR</div>
-
   <div class="menu">
-	<a href="index.html">Dashboard</a>
+    <a href="index.html">Dashboard</a>
     <a href="infak.html">Infak</a>
     <a href="pengeluaran.html">Pengeluaran</a>
     <a href="material.html">Material</a>
-	<a href="dokumen.html">Denah</a>
-	<a href="dokumentasi.html">Dokumentasi</a>
+    <a href="dokumen.html">Denah</a>
+    <a href="dokumentasi.html" class="active" aria-current="page">Dokumentasi</a>
   </div>
 </nav>
 
-<!-- HEADER -->
 <header class="header">
-  <h1>Dokumentasi</h1>
-
+  <h1>DOKUMENTASI</h1>
   <p>Pembangunan Musholla</p>
   <p>Perumahan Star Garden Residence (SGR)</p>
 </header>
+
 <div class="container">
 
-    <h2>Dokumentasi Pembangunan</h2>
+  <h2>Dokumentasi pembangunan</h2>
+  <p class="hint" id="dokSub"></p>
+  <div id="pageStatus"></div>
+  <div id="gallery"></div>
 
-    <div id="gallery"></div>
-
-    <div class="back-button">
-        <a href="index.html">← Kembali ke Dashboard</a>
-    </div>
-
+  <div class="back-button"><a href="index.html">← Kembali ke Dashboard</a></div>
 </div>
 
 <footer class="footer">
   © 2026 Panitia Pembangunan Musholla SGR
 </footer>
 
+<script src="config.js"></script>
+<script src="utils.js"></script>
 <script src="dokumentasi.js"></script>
 
 </body>

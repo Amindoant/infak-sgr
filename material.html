@@ -2,80 +2,69 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Material Sumbangan SGR</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Material Sumbangan Musholla SGR</title>
+  <meta name="description" content="Daftar material bangunan yang disumbangkan warga untuk pembangunan Musholla SGR.">
+  <meta property="og:title" content="Material Sumbangan Musholla SGR">
+  <meta property="og:description" content="Daftar material bangunan yang disumbangkan warga untuk pembangunan Musholla SGR.">
+  <meta property="og:image" content="https://i.imgur.com/srrKdnP.jpeg">
+  <meta property="og:url" content="https://www.mushollasgr.my.id/">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#2E7D32">
   <link rel="stylesheet" href="style.css">
-
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
 </head>
-
 <body>
-
-<!-- NAVBAR -->
 <nav class="navbar">
-
-  <div class="logo">
-    🕌 MUSHOLLA SGR
-  </div>
-
+  <div class="logo">🕌 MUSHOLLA SGR</div>
   <div class="menu">
     <a href="index.html">Dashboard</a>
     <a href="infak.html">Infak</a>
     <a href="pengeluaran.html">Pengeluaran</a>
-    <a href="material.html">Material</a>
+    <a href="material.html" class="active" aria-current="page">Material</a>
     <a href="dokumen.html">Denah</a>
     <a href="dokumentasi.html">Dokumentasi</a>
   </div>
-
 </nav>
 
-<!-- HEADER -->
 <header class="header">
-
   <h1>MATERIAL SUMBANGAN</h1>
-
   <p>Pembangunan Musholla</p>
-
   <p>Perumahan Star Garden Residence (SGR)</p>
-
 </header>
 
 <div class="container">
 
-  <h2>🧱 Data Material Sumbangan</h2>
+  <h2>🧱 Rekap material terkumpul</h2>
+  <p class="hint" id="materialSub"></p>
+  <div class="rekap-grid" id="rekapMaterial"></div>
+
+  <h2>Rincian sumbangan</h2>
+  <div class="toolbar-row">
+    <input type="search" id="cari" class="search-input" placeholder="Cari nama barang atau donatur…" aria-label="Cari data">
+    <select id="urut" class="select-input" aria-label="Urutan">
+      <option value="baru">Terbaru dulu</option>
+      <option value="lama">Terlama dulu</option>
+    </select>
+  </div>
+
+  <div id="pageStatus"></div>
 
   <div class="table-wrapper">
-
     <table>
-
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Tanggal</th>
-          <th>Nama Barang</th>
-          <th>Donatur</th>
-          <th>Jumlah</th>
-        </tr>
-      </thead>
-
+      <thead><tr><th>No</th><th>Tanggal</th><th>Nama Barang</th><th>Jumlah</th><th>Donatur</th></tr></thead>
       <tbody id="dataMaterial"></tbody>
-
     </table>
-
   </div>
-<div class="back-button">
-<a href="index.html">← Kembali ke Dashboard</a>
-</div>
+
+  <div class="back-button"><a href="index.html">← Kembali ke Dashboard</a></div>
 </div>
 
-<!-- FOOTER -->
 <footer class="footer">
-
   © 2026 Panitia Pembangunan Musholla SGR
-
 </footer>
 
+<script src="config.js"></script>
+<script src="utils.js"></script>
 <script src="material.js"></script>
 
 </body>
