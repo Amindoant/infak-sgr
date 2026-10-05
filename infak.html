@@ -2,25 +2,23 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Laporan Keuangan Infak SGR</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laporan Infak dan Donatur Musholla SGR</title>
+  <meta name="description" content="Rincian infak Jumat dan donatur pembangunan Musholla SGR lengkap dengan foto bukti.">
+  <meta property="og:title" content="Laporan Infak dan Donatur Musholla SGR">
+  <meta property="og:description" content="Rincian infak Jumat dan donatur pembangunan Musholla SGR lengkap dengan foto bukti.">
+  <meta property="og:image" content="https://i.imgur.com/srrKdnP.jpeg">
+  <meta property="og:url" content="https://www.mushollasgr.my.id/">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#2E7D32">
   <link rel="stylesheet" href="style.css">
-
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
 </head>
-
 <body>
-
-<!-- NAVBAR -->
 <nav class="navbar">
-
-  <div class="logo">
-    🕌 MUSHOLLA SGR
-  </div>
+  <div class="logo">🕌 MUSHOLLA SGR</div>
   <div class="menu">
     <a href="index.html">Dashboard</a>
-    <a href="infak.html" class="active">Infak</a>
+    <a href="infak.html" class="active" aria-current="page">Infak</a>
     <a href="pengeluaran.html">Pengeluaran</a>
     <a href="material.html">Material</a>
     <a href="dokumen.html">Denah</a>
@@ -28,100 +26,58 @@
   </div>
 </nav>
 
-<!-- HEADER -->
 <header class="header">
-
   <h1>LAPORAN KEUANGAN INFAK</h1>
-
   <p>Pembangunan Musholla</p>
-
   <p>Perumahan Star Garden Residence (SGR)</p>
-
-  <span id="periode">
-  Periode: -
-  </span>
-
+  <span id="periode">Periode: -</span>
 </header>
 
 <div class="container">
 
-  <button onclick="loadData()" class="btn-refresh">
-    🔄 Refresh Data
-  </button>
+  <div class="stat-row" id="statRow">
+    <div class="stat"><span>Infak Jumat</span><strong>Rp <b id="totalInfak">0</b></strong><small id="statPekan"></small></div>
+    <div class="stat"><span>Lewat QRIS</span><strong id="totalQris">Rp 0</strong><small id="statQris"></small></div>
+    <div class="stat"><span>Donatur</span><strong>Rp <b id="totalDonatur">0</b></strong><small id="statDonatur"></small></div>
+    <div class="stat stat-main"><span>Total keseluruhan</span><strong>Rp <b id="grandTotal">0</b></strong></div>
+  </div>
 
-  <!-- DATA INFAK -->
-  <h2>📊 Data Infak</h2>
+  <div class="toolbar-row">
+    <input type="search" id="cari" class="search-input" placeholder="Cari nama donatur, tanggal, atau pekan…" aria-label="Cari data">
+    <select id="urut" class="select-input" aria-label="Urutan">
+      <option value="baru">Terbaru dulu</option>
+      <option value="lama">Terlama dulu</option>
+    </select>
+    <button type="button" id="btnRefresh" class="btn-refresh">🔄 Refresh data</button>
+  </div>
 
+  <div id="pageStatus"></div>
+
+  <h2>📊 Infak Jumat</h2>
   <div class="table-wrapper">
-
     <table>
-
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Tanggal</th>
-          <th>Keterangan</th>
-          <th>Jumlah</th>
-          <th>Bukti</th>
-        </tr>
-      </thead>
-
+      <thead><tr><th>Tanggal</th><th>Keterangan</th><th>Metode</th><th>Jumlah</th><th>Bukti</th></tr></thead>
       <tbody id="dataInfak"></tbody>
-
     </table>
-
   </div>
 
-  <div class="total-infak">
-    Total Infak:
-    Rp <span id="totalInfak">0</span>
-  </div>
-
-  <!-- DONATUR -->
-  <h2>🟢 Donatur Tambahan</h2>
-
+  <h2>🟢 Donatur</h2>
   <div class="table-wrapper">
-
     <table>
-
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Tanggal</th>
-          <th>Keterangan</th>
-          <th>Jumlah</th>
-          <th>Bukti</th>
-        </tr>
-      </thead>
-
+      <thead><tr><th>No</th><th>Tanggal</th><th>Donatur</th><th>Jumlah</th><th>Bukti</th></tr></thead>
       <tbody id="dataDonatur"></tbody>
-
     </table>
-
   </div>
 
-  <div class="total-donatur">
-    Total Donatur:
-    Rp <span id="totalDonatur">0</span>
-  </div>
-
-  <!-- GRAND TOTAL -->
-  <div class="grand-total">
-    TOTAL KESELURUHAN:
-    Rp <span id="grandTotal">0</span>
-  </div>
-<div class="back-button">
-<a href="index.html">← Kembali ke Dashboard</a>
-</div>
+  <div class="back-button"><a href="index.html">← Kembali ke Dashboard</a></div>
 </div>
 
-<!-- FOOTER -->
 <footer class="footer">
-
   © 2026 Panitia Pembangunan Musholla SGR
-
 </footer>
 
+<script src="config.js"></script>
+<script src="utils.js"></script>
 <script src="app.js"></script>
 
 </body>

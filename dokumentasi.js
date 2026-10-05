@@ -1,151 +1,56 @@
-const SHEET_ID = "1Wp3-ERgPNgQTYEHNsHE0aS6upQckzjJIptm6jK4oU94";
-const SHEET_NAME = "dokumentasi";
+// ===============================================
+// HALAMAN DOKUMENTASI
+// ===============================================
+async function loadDokumentasi() {
+  const st = document.getElementById("pageStatus");
+  const gallery = document.getElementById("gallery");
+  SGR.status(st, "loading", "Memuat dokumentasi…");
+  let data;
+  try {
+    data = await SGR.fetchSheet(CONFIG.SHEET.dokumentasi);
+  } catch (e) {
+    SGR.status(st, "error", e.message, loadDokumentasi);
+    return;
+  }
+  SGR.status(st, "clear");
+  SGR.prepDates(data);
 
-async function loadDokumentasi(){
+  // Kelompokkan per tanggal + keterangan
+  const groups = {};
+  data.forEach((item, i) => {
+    const ket = String(item.keterangan || "").trim();
+    const key = (item._date ? item._date.getTime() : item.tanggal) + "_" + ket;
+    if (!groups[key]) groups[key] = { date: item._date, keterangan: ket, fotos: [], videos: [], i };
+    if (item.foto && item.foto.trim()) groups[key].fotos.push(SGR.imgur(item.foto));
+    if (item.video && item.video.trim()) {
+      const id = getYoutubeId(item.video.trim());
+      if (id) groups[key].videos.push(id);
+    }
+  });
 
-    const url=`https://opensheet.elk.sh/${SHEET_ID}/${SHEET_NAME}`;
+  const list = Object.values(groups).sort((a, b) => (b.date || 0) - (a.date || 0) || b.i - a.i);
+  if (!list.length) { SGR.status(st, "empty", "Belum ada dokumentasi."); return; }
+  document.getElementById("dokSub").textContent =
+    `${list.length} kali dokumentasi, terbaru ${SGR.hariTgl(list[0].date)}.`;
 
-    const res=await fetch(url);
-
-    const data=await res.json();
-
-    const gallery=document.getElementById("gallery");
-
-    gallery.innerHTML="";
-
-    // Group berdasarkan tanggal + keterangan
-    const groups={};
-
-    data.forEach(item=>{
-
-        const key=item.tanggal+"_"+item.keterangan;
-
-        if (!groups[key]) {
-
-		groups[key] = {
-        tanggal: item.tanggal,
-        keterangan: item.keterangan,
-        fotos: [],
-        video: ""
-		};
-
-		}
-
-		// Simpan video jika ada
-		if (item.video && item.video.trim() !== "") {
-		groups[key].video = item.video.trim();
-		}
-        if(item.foto){
-
-            let foto=item.foto;
-
-            if(foto.includes("imgur.com") && !foto.includes("i.imgur.com")){
-
-                const id=foto.split("/").pop().split(".")[0];
-
-                foto=`https://i.imgur.com/${id}.jpg`;
-
-            }
-
-            groups[key].fotos.push(foto);
-
-        }
-
-    });
-
-    Object.values(groups).forEach(item=>{
-
-        let html=`
-        <div class="timeline-card">
-
-            <div class="tanggal">
-                📅 ${item.tanggal}
-            </div>
-
-            <h3>${item.keterangan}</h3>
-
-            <div class="foto-grid">
-        `;
-
-        item.fotos.forEach(foto=>{
-
-            html+=`
-            <img
-            src="${foto}"
-            onclick="showFoto('${foto}')">
-            `;
-
-        });
-
-        html+=`</div>`;
-		
-		console.log(item);
-		console.log("Video =", item.video);
-        if(item.video){
-
-            const videoId = getYoutubeId(item.video);
-
-			if(videoId){
-
-			html += `
-			<div class="video">
-			<iframe
-            src="https://www.youtube.com/embed/${videoId}"
-            title="Video Dokumentasi"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-			</iframe>
-		</div>
-		`;
-		}
-
-        }
-
-        html+=`</div>`;
-
-        gallery.innerHTML+=html;
-
-    });
-
+  gallery.innerHTML = list.map(g => `
+    <article class="timeline-card">
+      <div class="tanggal">📅 ${SGR.hariTgl(g.date)}</div>
+      <h3>${SGR.esc(g.keterangan)}</h3>
+      ${g.fotos.length ? `<div class="foto-grid">${g.fotos.map(f =>
+        `<img src="${SGR.esc(f)}" alt="Foto progres ${SGR.esc(SGR.tgl(g.date))}" loading="lazy" data-zoom="${SGR.esc(f)}">`).join("")}</div>` : ""}
+      ${g.videos.map(id => `
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/${SGR.esc(id)}" title="Video dokumentasi ${SGR.esc(SGR.tgl(g.date))}"
+            loading="lazy" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>`).join("")}
+    </article>`).join("");
 }
 
 function getYoutubeId(url) {
-
-    if (!url) return "";
-
-    // Shorts
-    if (url.includes("/shorts/")) {
-        return url.split("/shorts/")[1].split("?")[0];
-    }
-
-    // youtu.be
-    if (url.includes("youtu.be/")) {
-        return url.split("youtu.be/")[1].split("?")[0];
-    }
-
-    // watch?v=
-    if (url.includes("watch?v=")) {
-        return url.split("watch?v=")[1].split("&")[0];
-    }
-
-    return "";
-}
-
-function showFoto(url){
-
-    const modal=document.createElement("div");
-
-    modal.className="modal-nota";
-
-    modal.innerHTML=`
-        <img src="${url}" class="modal-image">
-    `;
-
-    modal.onclick=()=>modal.remove();
-
-    document.body.appendChild(modal);
-
+  const m = url.match(/(?:shorts\/|youtu\.be\/|watch\?v=|embed\/)([\w-]{6,})/);
+  return m ? m[1] : "";
 }
 
 loadDokumentasi();
