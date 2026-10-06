@@ -83,7 +83,8 @@ async function loadDashboard() {
 
   document.getElementById("shareBtn").onclick = () => {
     const lp = pekan[pekan.length - 1];
-    let text = `Laporan Pembangunan Musholla SGR\n\n` +
+    let text = `Assalamu'alaikum Wr.Wb\n\n` +
+      `Berikut Laporan Pembangunan Musholla SGR\n\n` +
       `Total pemasukan: ${SGR.rupiah(totalMasuk)}\n` +
       `Total pengeluaran: ${SGR.rupiah(totalKeluar)}\n` +
       `Sisa saldo: ${SGR.rupiah(saldoAkhir)}`;
